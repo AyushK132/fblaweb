@@ -96,7 +96,7 @@ export default function AnimatedRectangle() {
                 Start Your Coding Adventure
               </h1>
               <p className="mt-2 text-lg text-gray-600 sm:mt-6 font-inter">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vehicula massa in enim luctus. Rutrum arcu.
+              Learn Coding in a fun and interactive way with CodeIt. Browse across different problems 
               </p>
 
              
@@ -133,7 +133,7 @@ export default function AnimatedRectangle() {
           An editor that helps you write clean codes.
         </h1>
         <p className="mt-2 text-lg text-gray-600 sm:mt-6 font-inter">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vehicula massa in enim luctus. Rutrum arcu.
+          A seamless editor where you can learn with ease as well as resources
         </p>
       </div>
     </div>
