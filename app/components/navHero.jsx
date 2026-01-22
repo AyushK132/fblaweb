@@ -12,18 +12,20 @@ import {
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
 
+import { useRouter } from "next/navigation";
 export function NavbarDemo() {
+  const router = useRouter();
   const navItems = [
     {
       name: "Features",
       link: "#features",
     },
     {
-      name: "Pricing",
+      name: "Leaderboard",
       link: "#pricing",
     },
     {
-      name: "Contact",
+      name: "Courses",
       link: "#contact",
     },
   ];
@@ -38,8 +40,14 @@ export function NavbarDemo() {
           <NavbarLogo  />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4 ">
-            <NavbarButton variant="primary">Login</NavbarButton>
-            <NavbarButton variant="primary">Book a call</NavbarButton>
+          <NavbarButton
+      variant="primary"
+      className="w-full"
+      onClick={() => router.push("/login")}
+    >
+      Login
+    </NavbarButton>
+            
           </div>
         </NavBody>
 

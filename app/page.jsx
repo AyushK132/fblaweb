@@ -191,12 +191,12 @@ function CourseCard({ title, color }) {
     <div className="bg-[#0b1024] border border-white/10 rounded-xl overflow-hidden hover:translate-y-[-4px] transition-transform duration-300 shadow-md">
       <div className={`h-36 bg-gradient-to-br ${color}`} />
       <div className="p-5">
-        <p className="text-xs text-white/40 mb-1">COURSE</p>
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-sm text-white/60 mb-4">
+        <p className="text-xs text-white mb-1">COURSE</p>
+        <h3 className="text-xl text-white font-bold mb-2">{title}</h3>
+        <p className="text-sm text-white mb-4">
           Learn core concepts through interactive challenges and projects.
         </p>
-        <span className="inline-block px-3 py-1 text-xs border border-white/20 rounded-full">
+        <span className="inline-block px-3 py-1 text-xs border border-white text-white rounded-full">
           Beginner
         </span>
       </div>

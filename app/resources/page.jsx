@@ -22,6 +22,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import AIChatbot from "../components/AIChatbot";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import QuizDialog from "../components/quiz";
 
 // --------------------------------------------------------------------------
 // TAG COLORS
@@ -62,7 +65,7 @@ const RESOURCES = {
   {
     id: 1,
     title: "Arrays Explained",
-    description: "Visual explanation of arrays for beginners.",
+    description: "A clear visual explanation of arrays for beginners.",
     url: "https://www.youtube.com/watch?v=9dr2mHYYoug",
     thumbnail: "https://i.ytimg.com/vi/00m3YhLT6fA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDIi763f8y2guOw9pN6FqmeT8G9sA",
     tags: ["Arrays", "Beginner"],
@@ -70,7 +73,7 @@ const RESOURCES = {
   {
     id: 2,
     title: "Stacks & Queues ",
-    description: "Animations for stacks and queues to understand their operations.",
+    description: "Animations for stacks and queues to understand.",
     url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     thumbnail: "https://i.ytimg.com/vi/0zx4EpFYrvc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAlFcSKF3zgxgRiygZjd6d_Mgc3Ng",
     tags: ["Stacks", "Queues", "Intermediate"],
@@ -145,10 +148,10 @@ const RESOURCES = {
     { id: 1, title: "Arrays Quiz",thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg", description: "Test your understanding of arrays.", link: "#", tags: ["Arrays", "Beginner"] },
     { id: 2, title: "Stacks Quiz", description: "Check your knowledge on stacks.", link: "#", tags: ["Stacks", "Intermediate"] },
     { id: 3, title: "Queues Quiz", description: "Test your understanding of queues.", link: "#", tags: ["Queues", "Intermediate"] },
-    { id: 4, title: "Sorting Quiz", description: "Practice sorting algorithms.", link: "#", tags: ["Sorting", "Intermediate"] },
+    { id: 4, title: "Sorting Quiz", description: "Practice complex sorting algorithms.", link: "#", tags: ["Sorting", "Intermediate"] },
     { id: 5, title: "Recursion Quiz", description: "Challenge yourself with recursion.", link: "#", tags: ["Recursion", "Intermediate"] },
-    { id: 6, title: "Trees Quiz", description: "Test binary tree concepts.", link: "#", tags: ["Trees", "Intermediate"] },
-    { id: 7, title: "Graphs Quiz", description: "Check your graph knowledge.", link: "#", tags: ["Graphs", "Advanced"] },
+    { id: 6, title: "Trees Quiz", description: "Test advanced binary tree concepts.", link: "#", tags: ["Trees", "Intermediate"] },
+    { id: 7, title: "Graphs Quiz", description: "Check your advanced graph knowledge.", link: "#", tags: ["Graphs", "Advanced"] },
     { id: 8, title: "Advanced Arrays Quiz", description: "Advanced arrays exercises.", link: "#", tags: ["Arrays", "Advanced"] },
     { id: 9, title: "Sorting Advanced Quiz", description: "Advanced sorting practice.", link: "#", tags: ["Sorting", "Advanced"] },
     { id: 10, title: "Recursion Advanced Quiz", description: "Advanced recursion problems.", link: "#", tags: ["Recursion", "Advanced"] },
@@ -188,14 +191,22 @@ export default function ResourcesPage() {
   });
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50">
-      <Sidebar />
-        <AIChatbot/>
-      <main className="flex-1 overflow-y-auto p-8">
-        <h1 className="text-4xl font-bold text-gray-800 mb-6">Resources</h1>
+    <div className="flex h-screen overflow bg-gray-50">
+      
+        <SidebarProvider>
+      <AppSidebar/>
+      <SidebarInset className="bg-muted/40">
+      <main className="flex-1 flex flex-col">
+    
+    {/* NAVBAR */}
+    <header className="h-16 border-b bg-background px-6 flex items-center gap-4">
+<SidebarTrigger className="-ml-1" />
+<h2 className="text-lg font-semibold">Resources</h2>
 
+</header>
+        <div className="p-6">
         {/* Controls */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-6 mb-6">
           {/* Category Select */}
           <Select
             value={selectedCategory}
@@ -271,15 +282,16 @@ export default function ResourcesPage() {
       </p>
       {selectedCategory === "Videos" && (
   <div className="relative mb-4">
-    <Link href={`/resources/video/${item.id}`}>
+    <a href={item.url} target="_blank" rel="noopener noreferrer">
       <img
         src={item.thumbnail}
         alt={item.title}
         className="rounded-xl w-full h-40 object-cover mb-3 hover:brightness-90 transition"
       />
-    </Link>
+    </a>
   </div>
 )}
+
 
       {/* Tags */}
       <div className="flex flex-wrap gap-2 mb-4">
@@ -311,12 +323,7 @@ export default function ResourcesPage() {
   </Link>
 )}
 {selectedCategory === "Quizzes" && (
-  <a
-    href={item.link}
-    className="mt-auto inline-block px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition text-center font-medium"
-  >
-    Take Quiz
-  </a>
+  <QuizDialog/>
 )}
 {selectedCategory === "Downloads" && (
   <a
@@ -337,8 +344,10 @@ export default function ResourcesPage() {
     </p>
   )}
 </div>
-
+</div>
       </main>
+      </SidebarInset>
+      </SidebarProvider>
     </div>
   );
 }

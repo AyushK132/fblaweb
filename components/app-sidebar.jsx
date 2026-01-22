@@ -43,11 +43,13 @@ export function AppSidebar(props) {
       {/* HEADER */}
       <SidebarHeader className="border-b px-6 py-5">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-600 text-white font-bold text-lg">
-            C
-          </div>
+        <img
+    src="terminal.png"
+    alt="E-learning Illustration"
+    className="w-7 h-7 object-cover"
+  />
           <span className="text-lg font-semibold tracking-tight">
-            Codify
+            CodeIt
           </span>
         </div>
       </SidebarHeader>
